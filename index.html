@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Online Banking Login</title>
+<style>
+  :root { --navy:#12355b; --teal:#1b7f8c; --bg:#eef2f6; --ink:#1c2733; --warn:#b3261e; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui, Segoe UI, Arial, sans-serif; background:var(--bg); color:var(--ink);
+         min-height:100vh; display:flex; align-items:center; justify-content:center; padding:16px; }
+  .card { background:#fff; width:100%; max-width:400px; border-radius:8px; overflow:hidden;
+          box-shadow:0 2px 12px rgba(0,0,0,.12); }
+  .banner { background:#fff4cc; color:#5c4400; font-size:.85rem; padding:10px 16px; border-bottom:1px solid #e8d48a; }
+  .brand { background:var(--navy); color:#fff; padding:18px 24px; font-size:1.1rem; font-weight:600; }
+  .body { padding:24px; }
+  h1 { font-size:1.4rem; margin:0 0 16px; }
+  label { display:block; font-size:.9rem; margin:14px 0 4px; }
+  input { width:100%; padding:10px; font-size:1rem; border:1px solid #9aa7b5; border-radius:4px; }
+  input:focus, button:focus-visible { outline:3px solid var(--teal); outline-offset:1px; }
+  button { margin-top:20px; width:100%; padding:12px; font-size:1rem; border:0; border-radius:4px;
+           background:var(--teal); color:#fff; cursor:pointer; }
+  #warning { display:none; }
+  #warning h2 { color:var(--warn); margin:0 0 12px; font-size:1.4rem; }
+  #warning p { line-height:1.5; }
+  #warning button { background:var(--navy); }
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="banner"><strong>Cybersecurity Training Simulation &ndash; Do not enter real credentials.</strong></div>
+  <div class="brand">Harbourline Bank (fictional)</div>
+
+  <!-- Login view -->
+  <div class="body" id="loginView">
+    <h1>Online Banking Login</h1>
+    <!-- No <form> element, no action, no method: nothing can be submitted or added to the URL -->
+    <label for="username">Username</label>
+    <input type="text" id="username" autocomplete="off" placeholder="training-user">
+    <label for="password">Password</label>
+    <input type="password" id="password" autocomplete="off" placeholder="Demo123!">
+    <button type="button" id="loginBtn">Login</button>
+  </div>
+
+  <!-- Warning view -->
+  <div class="body" id="warning" role="alert">
+    <h2>PHISHING SIMULATION</h2>
+    <p>The information you entered could have been captured and sent to an attacker if this were a real phishing website.</p>
+    <p>Always check the website address before entering your username or password.</p>
+    <button type="button" id="continueBtn">Continue to Official Website</button>
+  </div>
+</main>
+
+<script>
+  // CHANGE THIS to the legitimate website your fictional bank represents.
+  const OFFICIAL_URL = "https://www.moneysmart.gov.au";
+
+  document.getElementById("loginBtn").addEventListener("click", function () {
+    // Clear the fields immediately: the values are never read, stored or sent.
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("loginView").style.display = "none";
+    document.getElementById("warning").style.display = "block";
+  });
+
+  document.getElementById("continueBtn").addEventListener("click", function () {
+    window.location.href = OFFICIAL_URL;
+  });
+</script>
+</body>
+</html>
